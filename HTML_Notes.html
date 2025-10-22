@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Copy Specific Code Lines</title>
+  <style>
+    :root {
+      --radius: 1rem;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      margin: 0; padding: 24px; background: #0b1020; color: #e6e8ef;
+    }
+    h1 { font-size: 1.25rem; margin: 0 0 0px; font-weight: 700; }
+    p { margin: 30px 0 20px; color: #aab2d5; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      overflow: hidden;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: stretch;
+    }
+
+    .code {
+      padding: 16px 18px;
+      overflow-x: auto;
+      background: rgba(2, 6, 23, 0.7);
+    }
+
+    pre {
+      margin: 0; font-size: 14px; line-height: 1.6; color: #e6e8ef;
+      white-space: pre; tab-size: 2;
+    }
+
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+    .actions {
+      display: flex; flex-direction: column; gap: 8px; padding: 10px; background: rgba(255,255,255,0.02);
+      border-left: 1px solid rgba(255,255,255,0.06);
+    }
+
+    button.copy-btn {
+      appearance: none; border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255, 255, 255, 0.05);
+      color: #e6e8ef; padding: 10px 12px; border-radius: 10px;
+      font-weight: 600; cursor: pointer; transition: transform .06s ease, background .2s ease, border-color .2s ease;
+      white-space: nowrap;
+    }
+    button.copy-btn:hover { background: rgba(255,255,255,0.12); }
+    button.copy-btn:active { transform: translateY(1px); }
+    button.copy-btn.copied { border-color: #6ee7b7; box-shadow: 0 0 0 2px rgba(110,231,183,0.25) inset; }
+
+    .label {
+      font-size: 12px; letter-spacing: .08em; text-transform: uppercase; opacity: .7;
+      padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .footer-note { font-size: 12px; color: #93a0c6; margin-top: 14px; text-align: center; }
+  </style>
+</head>
+<!--Characters that must be escaped or avoided -->
+<!-- " = &quot; -->
+<!-- ' = &apos; -->
+<!-- < = &lt; -->
+<!-- > = &gt; -->
+<!-- & = &amp; -->
+<!-- ` = avoid -->
+<body>
+  <div class="grid">
+    <h1>Copy the exact code for each line</h1>
+    <p>HTML Notes</p>
+    <section class="card">
+      <div class="label">Desktop Break</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>&lt;br class=&quot;noMo&quot;&gt;</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="<br class=&quot;noMo&quot;>">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">Mobile Break</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>&lt;br class=&quot;hideShow&quot; style=&quot;display: none;&quot;&gt;</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="<br class=&quot;hideShow&quot; style=&quot;display: none;&quot;>">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">Reg Mark</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>&lt;sup style=&quot;font-size:.6em; vertical-align:.5em; line-height:1em;&quot;&gt;&amp;#xAE;&lt;/sup&gt;</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="<sup style=&quot;font-size:.6em; vertical-align:.5em; line-height:1em;&quot;>&#xAE;</sup>">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">Non-breaking Hyphen</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>&amp;#x2011;</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="&amp;#x2011;">Copy</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+   
+  <div class="grid">
+   <p>Emails</p>
+    <section class="card">
+      <div class="label">Ansira Everest</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>everestdesign-test-6657@design.250ok.net</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="everestdesign-test-6657@design.250ok.net">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">Jimmy</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>jimmy.wu@ansira.com</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="jimmy.wu@ansira.com">Copy</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <div class="grid">
+   <p>AmpScript</p>
+    <section class="card">
+      <div class="label">Subject Line</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>%%=v(@SL)=%%</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="%%=v(@SL)=%%">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">Preheader</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>%%=v(@PH)=%%</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="%%=v(@PH)=%%">Copy</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+   
+
+
+  <div class="grid">
+   <p>Charter RISE header</p>
+    <section class="card">
+      <div class="label">List-Unsubscribe</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>List-Unsubscribe</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="List-Unsubscribe">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">URL</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>https://spectrumemail.spectrumaws.spectrum.net/unsubscribe</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="https://spectrumemail.spectrumaws.spectrum.net/unsubscribe">Copy</button>
+        </div>
+      </div>
+    </section>
+     
+    <section class="card">
+      <div class="label">List-Unsubscribe-Post</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>List-Unsubscribe-Post</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="List-Unsubscribe-Post">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">URL</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>https://spectrumemail.spectrumaws.spectrum.net/unsubscribeheader/ecampaign</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="https://spectrumemail.spectrumaws.spectrum.net/unsubscribeheader/ecampaign">Copy</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  <div class="grid">
+   <p>Charter SMB header</p>
+    <section class="card">
+      <div class="label">List-Unsubscribe</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>List-Unsubscribe</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="List-Unsubscribe">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">URL</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>https://spectrumemail.spectrumaws.spectrum.net/smbUnsubscribe</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="https://spectrumemail.spectrumaws.spectrum.net/smbUnsubscribe">Copy</button>
+        </div>
+      </div>
+    </section>
+     
+    <section class="card">
+      <div class="label">List-Unsubscribe-Post</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>List-Unsubscribe-Post</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="List-Unsubscribe-Post">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="label">URL</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>https://spectrumemail.spectrumaws.spectrum.net/unsubscribeheader/ecampaign</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="https://spectrumemail.spectrumaws.spectrum.net/unsubscribeheader/ecampaign">Copy</button>
+        </div>
+      </div>
+    </section>
+  </div>
+  <p class="footer-note">Tip: You can also press <kbd>Enter</kbd> when a button is focused.</p>
+
+  <script>
+    // Copy handler for all buttons
+    const buttons = document.querySelectorAll('.copy-btn');
+
+    async function copyText(text, btn){
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.classList.add('copied');
+        const original = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1200);
+      } catch(err){
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = text; document.body.appendChild(ta);
+        ta.select(); ta.setSelectionRange(0, ta.value.length);
+        try { document.execCommand('copy');
+          btn.classList.add('copied');
+          const original = btn.textContent;
+          btn.textContent = 'Copied!';
+          setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1200);
+        } finally { document.body.removeChild(ta); }
+      }
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => copyText(btn.dataset.copy, btn));
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyText(btn.dataset.copy, btn); }
+      });
+      btn.setAttribute('aria-label', 'Copy to clipboard');
+    });
+  </script>
+</body>
+</html>
