@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Copy Specific Code Lines</title>
+  <title>Code Snippets & Escaper</title>
   <style>
 :root {
   --bg: #f8fafc;
@@ -13,6 +13,7 @@
   --accent: #3b82f6;
   --border: #e2e8f0;
   --radius: 8px;
+  --primary: #2563eb;
 }
 
 body {
@@ -52,18 +53,32 @@ p { color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; text-tran
 
 .row {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   padding: 12px 16px;
+  gap: 16px;
 }
 
 .code {
-  font-family: ui-monospace, monospace;
-  font-size: 0.9rem;
-  color: #ef4444; /* Standard "code" red or choose your preference */
+  flex: 1; 
+  min-width: 0; 
   background: #fafafa;
   padding: 4px 8px;
   border-radius: 4px;
+}
+
+.code pre {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-all;
+  overflow-wrap: break-word;   
+  font-family: ui-monospace, monospace;
+  font-size: 0.9rem;
+  color: #ef4444;
+}
+
+.actions {
+  flex-shrink: 0;
 }
 
 .copy-btn {
@@ -83,20 +98,63 @@ p { color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; text-tran
 .copy-btn:active { transform: scale(0.98); }
 .copy-btn.copied { background: #10b981; }
 
-.footer-note { text-align: center; font-size: 0.8rem; color: var(--text-light); }
+/* Escaper Specific Styles */
+.escaper-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    margin-top: 4rem;
+}
+
+.field-group {
+    margin-bottom: 1.5rem;
+}
+
+.field-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-family: ui-monospace, monospace;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+textarea:focus {
+    outline: 2px solid var(--primary);
+    border-color: transparent;
+}
+
+.escaper-copy-btn {
+    margin-top: 0.5rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.875rem;
+}
+
+.escaper-copy-btn:hover { background: #1d4ed8; }
+
   </style>
 </head>
-<!--Characters that must be escaped or avoided -->
-<!-- " = &quot; -->
-<!-- ' = &apos; -->
-<!-- < = &lt; -->
-<!-- > = &gt; -->
-<!-- & = &amp; -->
-<!-- ` = avoid -->
 <body>
   <div class="grid">
     <h1>Copy the exact code for each line</h1>
     <p>HTML Notes</p>
+    
     <section class="card">
       <div class="label">Desktop Break</div>
       <div class="row">
@@ -104,7 +162,7 @@ p { color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; text-tran
           <pre><code>&lt;br class=&quot;noMo&quot;&gt;</code></pre>
         </div>
         <div class="actions">
-          <button class="copy-btn" data-copy="<br class=&quot;noMo&quot;>">Copy</button>
+          <button class="copy-btn" data-copy="&lt;br class=&quot;noMo&quot;&gt;">Copy</button>
         </div>
       </div>
     </section>
@@ -116,7 +174,7 @@ p { color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; text-tran
           <pre><code>&lt;br class=&quot;hideShow&quot; style=&quot;display: none;&quot;&gt;</code></pre>
         </div>
         <div class="actions">
-          <button class="copy-btn" data-copy="<br class=&quot;hideShow&quot; style=&quot;display: none;&quot;>">Copy</button>
+          <button class="copy-btn" data-copy="&lt;br class=&quot;hideShow&quot; style=&quot;display: none;&quot;&gt;">Copy</button>
         </div>
       </div>
     </section>
@@ -128,7 +186,7 @@ p { color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; text-tran
           <pre><code>&lt;sup style=&quot;font-size:.6em; vertical-align:.5em; line-height:1em;&quot;&gt;&amp;#xAE;&lt;/sup&gt;</code></pre>
         </div>
         <div class="actions">
-          <button class="copy-btn" data-copy="<sup style=&quot;font-size:.6em; vertical-align:.5em; line-height:1em;&quot;>&#xAE;</sup>">Copy</button>
+          <button class="copy-btn" data-copy="&lt;sup style=&amp;quot;font-size:.6em; vertical-align:.5em; line-height:1em;&amp;quot;&gt;&amp;#xAE;&lt;/sup&gt;">Copy</button>
         </div>
       </div>
     </section>
@@ -145,10 +203,7 @@ p { color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; text-tran
       </div>
     </section>
 
-  </div>
-   
-  <div class="grid">
-   <p>Emails</p>
+    <p style="margin-top: 2rem;">Emails</p>
     <section class="card">
       <div class="label">Ansira Litmus</div>
       <div class="row">
@@ -183,10 +238,7 @@ p { color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; text-tran
       </div>
     </section>
 
-  </div>
-
-  <div class="grid">
-   <p>AmpScript</p>
+    <p style="margin-top: 2rem;">AmpScript</p>
     <section class="card">
       <div class="label">Subject Line</div>
       <div class="row">
@@ -211,12 +263,63 @@ p { color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; text-tran
       </div>
     </section>
 
+    <p style="margin-top: 2rem;">Dark Mode</p>
+    <section class="card">
+      <div class="label">Dark Mode for Outlook</div>
+      <div class="row">
+        <div class="code" aria-live="polite">
+          <pre><code>&lt;!--[if gte mso 16]&gt;
+&lt;style&gt;
+.keep-black {
+mso-style-textfill-type:gradient;
+mso-style-textfill-fill-gradientfill-stoplist:&quot;0 \#000000 1 100000\,99000 \#000000 1 100000&quot;;
+color: #ffffff !important;
+}
+.keep-white {
+mso-style-textfill-type:gradient;
+mso-style-textfill-fill-gradientfill-stoplist:&quot;0 \#FFFFFF 0 100000\,100000 \#FFFFFF 0 100000&quot;;
+color: #000000 !important;
+}
+&lt;/style&gt;
+&lt;![endif]--&gt;</code></pre>
+        </div>
+        <div class="actions">
+          <button class="copy-btn" data-copy="&lt;!--[if gte mso 16]&gt;
+&lt;style&gt;
+.keep-black {
+mso-style-textfill-type:gradient;
+mso-style-textfill-fill-gradientfill-stoplist:&quot;0 \#000000 1 100000\,99000 \#000000 1 100000&quot;;
+color: #ffffff !important;
+}
+.keep-white {
+mso-style-textfill-type:gradient;
+mso-style-textfill-fill-gradientfill-stoplist:&quot;0 \#FFFFFF 0 100000\,100000 \#FFFFFF 0 100000&quot;;
+color: #000000 !important;
+}
+&lt;/style&gt;
+&lt;![endif]--&gt;">Copy</button>
+        </div>
+      </div>
+    </section>
+
+    <div class="escaper-container">
+        <h1>HTML Symbol Escaper</h1>
+        
+        <div class="field-group">
+            <label for="input">Paste Original Code/Text:</label>
+            <textarea id="input" placeholder="Enter text here (e.g. <div class='test'>)"></textarea>
+        </div>
+
+        <div class="field-group">
+            <label for="output">Escaped Result (Attribute Safe):</label>
+            <textarea id="output" readonly placeholder="Result will appear here..."></textarea>
+            <button class="escaper-copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
+        </div>
+    </div>
   </div>
 
-  <p class="footer-note">Tip: You can also press <kbd>Enter</kbd> when a button is focused.</p>
-
   <script>
-    // Copy handler for all buttons
+    /* --- SNIPPET COPY LOGIC --- */
     const buttons = document.querySelectorAll('.copy-btn');
 
     async function copyText(text, btn){
@@ -227,10 +330,9 @@ p { color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; text-tran
         btn.textContent = 'Copied!';
         setTimeout(() => { btn.textContent = original; btn.classList.remove('copied'); }, 1200);
       } catch(err){
-        // Fallback for older browsers
         const ta = document.createElement('textarea');
         ta.value = text; document.body.appendChild(ta);
-        ta.select(); ta.setSelectionRange(0, ta.value.length);
+        ta.select();
         try { document.execCommand('copy');
           btn.classList.add('copied');
           const original = btn.textContent;
@@ -242,11 +344,34 @@ p { color: var(--text-light); margin-bottom: 1.5rem; font-weight: 600; text-tran
 
     buttons.forEach(btn => {
       btn.addEventListener('click', () => copyText(btn.dataset.copy, btn));
-      btn.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); copyText(btn.dataset.copy, btn); }
-      });
       btn.setAttribute('aria-label', 'Copy to clipboard');
     });
+
+    /* --- ESCAPER LOGIC --- */
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+
+    function escapeHTML(str) {
+        const symbols = {
+            '&': '&amp;',
+            '<': '&lt;',
+            '>': '&gt;',
+            '"': '&quot;',
+            "'": '&#39;'
+        };
+        return str.replace(/[&<>"']/g, s => symbols[s]);
+    }
+
+    input.addEventListener('input', () => {
+        output.value = escapeHTML(input.value);
+    });
+
+    function copyToClipboard() {
+        if (!output.value) return;
+        output.select();
+        document.execCommand('copy');
+        alert('Escaped code copied!');
+    }
   </script>
 </body>
 </html>
